@@ -1,7 +1,7 @@
 <template>
   <div class="layout-head">
     <div class="logo pro-name">
-      <span>夜精灵-聊天室</span>
+      <span>{{ '夜精灵-聊天室' }}</span>
     </div>
     <a-popover title="">
       <template #content>

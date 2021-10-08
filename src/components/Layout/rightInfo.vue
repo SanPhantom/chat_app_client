@@ -28,14 +28,14 @@ export default {
         return {
           chat_uid: uuidv4(),
           sender: {
-            nickName: 'SanPhantomSanPhantom',
+            nickName: 'SanPh',
             user_id: flag ? sender : revicer,
           },
           receiver: {
             nickName: '风的自由',
             user_id: !flag ? sender : revicer,
           },
-          time: '2021-09-09 22:12:11',
+          time: '2021-10-07 22:12:11',
           content: {}
         }
       })
@@ -66,6 +66,9 @@ export default {
         font-size: 20px;
         font-weight: bold;
         font-family: "ZhengXinGe YingBi KaiShu";
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
     &-content {

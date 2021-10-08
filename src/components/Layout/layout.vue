@@ -27,10 +27,10 @@ import { DoubleRightOutlined, DoubleLeftOutlined } from "@ant-design/icons-vue";
 export default {
   data() {
     return {
-      leftWidth: 320,
+      leftWidth: 0,
       // maxLeftWidth: 450,
-      defaultLeftWidth: 320,
-      isOpen: true,
+      defaultLeftWidth: document.body.clientWidth < 720 ? document.body.clientWidth * 0.8 : 320,
+      isOpen: false,
     };
   },
   props: [],
@@ -44,7 +44,9 @@ export default {
   },
   methods: {
     initResize() {
-      
+      this.defaultLeftWidth = document.body.clientWidth < 720 ? document.body.clientWidth * 0.8 : 320;
+      this.leftWidth = this.isOpen ? this.defaultLeftWidth : 0;
+      // console.log(screen.width, this.leftWidth)
     },
     judgeShowLeftBar() {
       console.log(this.isOpen)
@@ -53,8 +55,12 @@ export default {
     }
   },
   mounted() {
-    this.initResize();
+    // console.log(screen.width)
+    window.addEventListener('resize',this.initResize); 
   },
+  beforeUnmount() {
+    window.removeEventListener("resize",this.listenResize);
+  }
 };
 </script>
 
@@ -84,6 +90,8 @@ export default {
         color: #eaeaea;
         position: absolute;
         right: -20px;
+        top: 50%;
+        margin-top: -40px;
         z-index: 99;
       }
     }
@@ -92,9 +100,10 @@ export default {
     }
   }
 }
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 720px) {
   .layout-container {
     .left-bar {
+      width: 80%;
       height: calc(100vh - 60px - 25px) !important;
       position: absolute !important;
       z-index: 99;
